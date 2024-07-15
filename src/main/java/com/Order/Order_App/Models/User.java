@@ -24,8 +24,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, unique = true)
-    private String phone;
+    @Column(nullable = false)
+    private String role;
 
     @Lob
     @Column(name = "profile_image")
