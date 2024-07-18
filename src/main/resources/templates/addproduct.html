@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/assets/plugins/fontawesome/css/all.min.css}">
     <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 
-    <title>Add Category</title>
+    <title>Add Product</title>
 </head>
 <body>
 
@@ -37,57 +37,49 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form id="productForm" action="#" method="POST">
+                        <form th:action="@{/addproduct}" th:object="${product}" method="POST">
+                            <div th:if="${successMessage}" class="alert alert-success" role="alert">
+                                <span th:text="${successMessage}"></span>
+                            </div>
                             <div class="row">
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="productId">Product ID</label>
-                                        <input type="text" id="productId" name="productId" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-sm-6 col-12">
-                                    <div class="form-group">
                                         <label for="productName">Product Name</label>
-                                        <input type="text" id="productName" name="productName" class="form-control">
+                                        <input type="text" id="productName" th:field="*{productName}" class="form-control">
+                                        <div th:if="${#fields.hasErrors('productName')}" class="text-danger">
+                                            <p th:each="err : ${#fields.errors('productName')}" th:text="${err}"></p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="productQuantity">Product Quantity</label>
-                                        <input type="number" id="productQuantity" name="productQuantity" class="form-control">
+                                        <input type="number" id="productQuantity" th:field="*{productQuantity}" class="form-control">
+                                        <div th:if="${#fields.hasErrors('productQuantity')}" class="text-danger">
+                                            <p th:each="err : ${#fields.errors('productQuantity')}" th:text="${err}"></p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="productPrice">Product Price</label>
-                                        <input type="text" id="productPrice" name="productPrice" class="form-control">
+                                        <input type="text" id="productPrice" th:field="*{productPrice}" class="form-control">
+                                        <div th:if="${#fields.hasErrors('productPrice')}" class="text-danger">
+                                            <p th:each="err : ${#fields.errors('productPrice')}" th:text="${err}"></p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="category">Category</label>
-                                        <select id="category" name="category" class="form-control">
-                                            <option value="category1">Category 1</option>
-                                            <option value="category2">Category 2</option>
-                                            <option value="category3">Category 3</option>
+                                        <select id="category" th:field="*{category.categoryId}" class="form-control">
+                                            <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label for="productImage">Product Image</label>
-                                        <div class="image-upload">
-                                            <input type="file" id="productImage" name="productImage">
-                                            <div class="image-uploads">
-                                                <img src="assets/img/icons/upload.svg" alt="img">
-                                                <h4>Drag and drop a file to upload</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
                                     <button type="submit" class="btn btn-submit me-2">Submit</button>
-                                    <a href="index.html" class="btn btn-cancel">Cancel</a>
+                                    <a th:href="@{/index}" class="btn btn-cancel">Cancel</a>
                                 </div>
                             </div>
                         </form>
@@ -97,11 +89,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 </div>
 
 <script th:src="@{/assets/js/jquery-3.6.0.min.js}"></script>

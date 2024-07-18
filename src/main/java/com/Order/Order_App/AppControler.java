@@ -13,17 +13,17 @@ public class AppControler {
             return "dashboard";
         }
 
-        @GetMapping("/addcategory")
-        public String Addcategory( ) {
+//        @GetMapping("/addcategory")
+//        public String Addcategory( ) {
+//
+//            return "addcategory"; // This should match the name of your HTML template
+//        }
 
-            return "addcategory"; // This should match the name of your HTML template
-        }
-
-        @GetMapping("/addproduct")
-        public String AddProduct( ) {
-
-            return "addproduct"; // This should match the name of your HTML template
-        }
+//        @GetMapping("/")
+//        public String AddProduct( ) {
+//
+//            return "addproduct"; // This should match the name of your HTML template
+//        }
 
 
 
