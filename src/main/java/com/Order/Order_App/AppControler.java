@@ -13,6 +13,11 @@ public class AppControler {
             return "dashboard";
         }
 
+        @GetMapping("/categorylist")
+        public String categorylist() {
+            return "categorylist";
+        }
+
 //        @GetMapping("/addcategory")
 //        public String Addcategory( ) {
 //
